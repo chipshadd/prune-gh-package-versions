@@ -41,7 +41,7 @@ def get_versions(type, name):
             age = CURRENT_DATE - datetime.strptime(package['updated_at'], "%Y-%m-%dT%H:%M:%SZ")
             package["age"] = age.days
             data = {'id': package['id'], 'url': package['html_url'], 'age': age.days}
-            if len(package["metadata"]["container"]["tags"]) == 0:
+            if len(package["metadata"]["container"]["tags"]) == 0 and DELETE_UNTAGGED != 'none':
                 if DELETE_UNTAGGED == 'all' or DELETE_UNTAGGED == 'only':
                     stats["untagged"] += 1
                     final["untagged"].append(data)

@@ -4,7 +4,7 @@
 
 Ideally your pipelines and automations should auto cleanup artifacts/packages after development is done but in case you live in the real world, here's a little cleanup script for you.
 
-  
+Word of caution:  If you have packages built from another package in your organization, ensure you are not deleting the version another package was built from.  A package could have an untagged version in it's layers and deleting that version will render the package unpullable.
 
 ## Config options
 
@@ -26,6 +26,7 @@ Ideally your pipelines and automations should auto cleanup artifacts/packages af
   - `all` - Script will delete ALL untagged package versions it finds regardless of `last_updated` criteria
   - `only` - Script will ONLY delete untagged package versions it finds regardless of `last_updated` criteria
   - `normal` - No special treatment of untagged package versions.  `last_updated` criteria will be applied
+  - `none` - Do not delete any untagged package versions found
  
 `unattended` - Script will prompt for confirmation before deletion, set this to `true` to auto-accept the prompt.
 
